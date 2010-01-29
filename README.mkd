@@ -53,7 +53,7 @@ Copyright (c) 2009 Ben Williams <benw@plasticboy.com>
 
 [markdown]: http://daringfireball.net/projects/markdown/
   "Markdown syntax project"
-[script homepage]: http://www.vim.org/scripts/script.php?script_id=1242
+[script homepage]: http://www.vim.org/scripts/script.php?script_id=2882
   "Markdown Vim Script homepage"
 [vim]: http://www.vim.org
   "Vim Editor"
