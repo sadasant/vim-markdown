@@ -1,6 +1,6 @@
 {
   "name" : "Markdown",
-  "version" : "dev",
+  "version" : "1.1.1",
   "author" : "Hallison Batista <hallison.batista@gmail.com>",
   "repository" : {"type": "git", "url": "git://github.com/hallison/vim-markdown.git"},
   "dependencies" : {
