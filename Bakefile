@@ -18,9 +18,15 @@ task package {
   gzip ${pkg_file}
 }
 
+desc pkgtest "Create a VBA test package"
+task pkgtest {
+  pkg_file="${pkg_name}-test.vba"
+  invoke package
+}
+
 desc install "Install vimball in ${HOME}/.vim/"
 task install {
-  package
+  invoke package
   status "Intalling ${pkg_file}"
   vim ${pkg_file}.gz +":source %" +":q" &> /dev/null
 }
