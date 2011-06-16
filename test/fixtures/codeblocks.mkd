@@ -1,0 +1,26 @@
+    #!/bin/bash
+    
+    echo "codeblock example"
+    
+    exit 0
+
+Start text with code.
+
+- This code must be show inside a list item.
+
+  This is a paragraph inside list item.
+
+        This is a codeblock.
+
+Second paragraph.
+
+    # 3rd code
+
+Fourth paragraph.
+
+    #!/bin/bash
+    ls
+    echo "4th code"
+
+Final paragraph.
+
