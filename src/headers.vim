@@ -14,19 +14,23 @@
 "@   ### 3rd level header
 "@ 
 "@   Body text and several paragraphs separated by blank lines.
+"@
+"@   #### 4th level header
+"@
+"@   ##### 5th level header
+"@
+"@   ###### 6th level header
 "@ >
 "@ 
 "@ To create an atx-style header, you put 1-6 hash marks (#) at the beginning of
 "@ the line — the number of hashes equals the resulting HTML header level.
 "@ 
 
-"
-syntax cluster markdownHeaders contains=markdownHeader1,markdownHeader2,markdownHeader3,markdownHeader4,markdownHeader5,markdownHeader6
-syntax match   markdownHeaderBlockRule /^[=-]\+$/  contained
-syntax match   markdownHeaderLineRule  /^[#]{1,6}/ contained conceal
+syntax match markdownHeaderBlockRule /^[=-]\+$/  contained
+syntax match markdownHeaderLineRule  /^[#]{1,6}/ contained conceal
 
-syntax match  markdownHeader1 /^.\+\n=\+$/ contains=markdownHeaderBlockRule,@markdownStyle,@Spell
-syntax match  markdownHeader2 /^.\+\n-\+$/ contains=markdownHeaderBlockRule,@markdownStyle,@Spell
+syntax match markdownHeader1 /^.\+\n=\+$/ contains=markdownHeaderBlockRule,@markdownStyle,@Spell
+syntax match markdownHeader2 /^.\+\n-\+$/ contains=markdownHeaderBlockRule,@markdownStyle,@Spell
 
 syntax region markdownHeader1 matchgroup=markdownHeaderLineRule start="^\s*#"      end="\($\|#\+\)" contains=@markdownStyle,@Spell
 syntax region markdownHeader2 matchgroup=markdownHeaderLineRule start="^\s*##"     end="\($\|#\+\)" contains=@markdownStyle,@Spell
