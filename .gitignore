@@ -4,4 +4,7 @@
 *.tmp
 *.vba
 *.zip
-
+test.*
+build/*
+pkg/*
+tmp/*
