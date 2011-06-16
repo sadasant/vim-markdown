@@ -35,6 +35,20 @@ Vim-Markdown is hosted on [Github (fork project)](http://github.com/hallison/vim
 
 Visit the [script homepage][] for more information.
 
+Development
+-----------
+
+The development this plugin is based in prototyping. The workflow applied is
+following:
+
+1. Write the text with the [Markdown][] syntax.
+2. Write the test based on sourcing files for highlighting the syntax.
+3. Run and see results on the screen.
+4. Commit the code that works.
+
+The final result, the syntax and your configurations, are builded, saved and
+released in the master branch.
+
 Compatibilities
 ---------------
 
