@@ -10,6 +10,8 @@ Start text with code.
 
   This is a paragraph inside list item.
 
+    - This is a subitem.
+
         This is a codeblock.
 
 Second paragraph.
