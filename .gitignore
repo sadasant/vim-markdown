@@ -5,6 +5,7 @@
 *.vba
 *.zip
 test.*
+test/*/*.html
 build/*
 pkg/*
 tmp/*
