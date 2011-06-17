@@ -1,0 +1,38 @@
+Unordered list:
+
+* item two
+* item one
+* item three
+  - subitem 3.1
+
+Or
+
+- item two
+- item one
+- item three
+
+Ordered list:
+
++ item one
++ item two
++ item three
+
+Or uses nested list:
+
++ Item one
+
+  It's possible includes paragraphs.
+
+    - Content 1.1 with four spaces or one tab.
+
+    - Content 1.2 with four spaces or one tab.
+
+      - This is not a codeblock.
+
+          - This is not a codeblock.
+
++ Item two
+
+  - Content 2.1
+  - Content 2.2
+
