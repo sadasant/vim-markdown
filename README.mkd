@@ -46,6 +46,10 @@ following:
 3. Run and see results on the screen.
 4. Commit the code that works.
 
+The tests run with the following command:
+
+    ./runtest <source>
+
 The final result, the syntax and your configurations, are builded, saved and
 released in the master branch.
 

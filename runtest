@@ -1,0 +1,18 @@
+#!/bin/sh
+
+usage() {
+  echo
+  echo "Usage: "
+  echo "  ${0} <name>"
+  echo
+  echo "Names: "
+  for src in test/fixtures/*.mkd; do
+    src=${src##*/}
+    echo "  ${src%.*}"
+  done
+}
+
+
+: ${1:?"source name is required" "$(usage)"}
+
+vim -n test/test.vim +":source %" ${1}
