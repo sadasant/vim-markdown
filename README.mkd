@@ -59,6 +59,18 @@ Compatibilities
 This syntax try be compliant 100% with the [Markdown][] syntax specification
 and use only [Markdown.pl][markdown] written by the [author][].
 
+Features
+--------
+
+This syntax highlight add the following features:
+
+- Coalesce all the Markdown characters as asterisks, underscores, backticks
+  for improve the reading.
+- All colors used in HTML syntax are used.
+- Highlighting for all HTML tags.
+- Includes useful snippets for a faster typing.
+- Includes documentation of Markdown syntax.
+
 Copyright
 ---------
 
