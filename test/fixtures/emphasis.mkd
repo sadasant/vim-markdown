@@ -3,3 +3,5 @@
 This _emphasis phrase *with underscores must be _finish here_ and _this
 is a large phrase_. This phrase is not emphasized.
 
+This **_phrase has text in bold emphasized_**. This is not a text in
+_**bold**_ **_emphisized_**.
