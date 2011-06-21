@@ -24,5 +24,12 @@ Fourth paragraph.
     ls
     echo "4th code"
 
+Fifth paragraph.
+
+```
+This is a code block
+```
+
 Final paragraph.
+
 

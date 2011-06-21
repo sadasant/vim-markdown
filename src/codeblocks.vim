@@ -8,6 +8,7 @@ syntax match markdownCodeBlockRule /^\(\s\{4}\|\t{1}\)[^\*\-\+]/ conceal
 
 " Code Block
 syntax region markdownCodeBlock matchgroup=markdownCodeBlockRule start=/^\(\s\{4}\|\t{1}\)[^\*\-\+]/ end="$"
+syntax region markdownCodeBlock start=/^```$/ end=/^```$/ keepend contains=markdownBacktick
 
-Highlight markdownCodeBlockRule Operator
-Highlight markdownCodeBlock     Operator
+Highlight markdownCodeBlockRule Identifier
+Highlight markdownCodeBlock     Identifier
