@@ -1,0 +1,5 @@
+*emphasis with asterisks* and_ this _ will be ignored.
+
+This _emphasis phrase *with underscores must be _finish here_ and _this
+is a large phrase_. This phrase is not emphasized.
+
