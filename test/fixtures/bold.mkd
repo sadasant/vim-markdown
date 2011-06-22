@@ -1,6 +1,0 @@
-
-**bold with double **asterisks**
-
-This __bold phrase with double __underscores must be **finish __here__ and __this
-is a large phrase__. This text is not bolded.
-

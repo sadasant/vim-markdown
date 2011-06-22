@@ -8,48 +8,23 @@
 "@ >
 "@ 
 
-syntax region markdownEmphasisUnderscore start=/_\S\@=/  end=/\S\@<=_/  keepend contains=markdownUnderscore,@Spell
-syntax region markdownEmphasisAsterisk   start=/\*\S\@=/ end=/\S\@<=\*/ keepend contains=markdownAsterisk,@Spell
+syntax region markdownEmphasis start=/_\S\@=/  end=/\S\@<=_/  keepend contains=markdownUnderscore,@Spell
+syntax region markdownEmphasis start=/\*\S\@=/ end=/\S\@<=\*/ keepend contains=markdownAsterisk,@Spell
 
-syntax match markdownAsterisk   contained "\*" conceal
-syntax match markdownUnderscore contained "_"  conceal
+Highlight markdownEmphasis htmlItalic
 
-Highlight markdownAsterisk   Operator
-Highlight markdownUnderscore Operator
+syntax region markdownBold start=/\*\*\S\@=/ end=/\S\@<=\*\*/ keepend contains=markdownAsterisk,markdownAsterisk,@Spell
+syntax region markdownBold start=/__\S\@=/   end=/\S\@<=__/   keepend contains=markdownUnderscore,markdownUnderscore,@Spell
 
-Highlight markdownEmphasisUnderscore htmlItalic
-Highlight markdownEmphasisAsterisk   htmlItalic
+Highlight markdownBold htmlBold
 
-syntax region markdownBoldEmphasisDoubleAsteriskUnderscore start=/\*\*_\S\@=/ end=/\S\@<=_\*\*/ keepend contains=markdownDoubleAsteriskUnderscore,markdownUnderscoreDoubleAsterisk,@Spell
-syntax region markdownBoldEmphasisUnderscoreDoubleAsterisk start=/_\*\*\S\@=/ end=/\S\@<=\*\*_/ keepend contains=markdownUnderscoreDoubleAsterisk,markdownDoubleAsteriskUnderscore,@Spell
-syntax match  markdownDoubleAsteriskUnderscore contained "\*\*_" conceal
-syntax match  markdownUnderscoreDoubleAsterisk contained "_\*\*" conceal
+syntax region markdownBoldEmphasis start=/\*__\S\@=/   end=/\S\@<=__\*/   keepend contains=markdownAsterisk,markdownUnderscore,markdownUnderscore,@Spell
+syntax region markdownBoldEmphasis start=/\*\*_\S\@=/  end=/\S\@<=_\*\*/  keepend contains=markdownAsterisk,markdownAsterisk,markdownUnderscore,@Spell
+syntax region markdownBoldEmphasis start=/\*\*\*\S\@=/ end=/\S\@<=\*\*\*/ keepend contains=markdownAsterisk,markdownAsterisk,markdownAsterisk,@Spell
 
-Highlight markdownBoldEmphasisDoubleAsteriskUnderscore htmlBoldItalic
-Highlight markdownBoldEmphasisUnderscoreDoubleAsterisk htmlBoldItalic
+syntax region markdownBoldEmphasis start=/_\*\*\S\@=/  end=/\S\@<=\*\*_/  keepend contains=markdownUnderscore,markdownAsterisk,markdownAsterisk,@Spell
+syntax region markdownBoldEmphasis start=/__\*\S\@=/   end=/\S\@<=\*__/   keepend contains=markdownUnderscore,markdownUnderscore,markdownAsterisk,@Spell
+syntax region markdownBoldEmphasis start=/___\S\@=/    end=/\S\@<=___/    keepend contains=markdownUnderscore,markdownUnderscore,markdownUnderscore,@Spell
 
-Highlight markdownDoubleAsteriskUnderscore Operator
-Highlight markdownUnderscoreDoubleAsterisk Operator
-
-syntax region markdownBoldEmphasisDoubleUnderscoreAsterisk start=/__\*\S\@=/ end=/\S\@<=\*__/ keepend contains=markdownDoubleUnderscoreAsterisk,markdownAsteriskDoubleUnderscore,@Spell
-syntax region markdownBoldEmphasisAsteriskDoubleUnderscore start=/\*__\S\@=/ end=/\S\@<=__\*/ keepend contains=markdownAsteriskDoubleUnderscore,markdownDoubleUnderscoreAsterisk,@Spell
-syntax match  markdownDoubleUnderscoreAsterisk contained "__\*" conceal
-syntax match  markdownAsteriskDoubleUnderscore contained "\*__" conceal
-
-Highlight markdownBoldEmphasisDoubleUnderscoreAsterisk htmlBoldItalic
-Highlight markdownBoldEmphasisAsteriskDoubleUnderscore htmlBoldItalic
-Highlight markdownDoubleUnderscoreAsterisk Operator
-Highlight markdownAsteriskDoubleUnderscore Operator
-
-syntax region markdownBoldEmphasisAsterisk start=/\*\*\*\S\@=/ end=/\S\@<=\*\*\*/ keepend contains=markdownTripleAsterisk,@Spell
-syntax match  markdownTripleAsterisk contained "\*\*\*" conceal
-
-Highlight markdownBoldEmphasisAsterisk htmlBoldItalic
-Highlight markdownTripleAsterisk Operator
-
-syntax region markdownBoldEmphasisUnderscore start=/___\S\@=/    end=/\S\@<=___/    keepend contains=markdownTripleUnderscore,@Spell
-syntax match  markdownTripleUnderscore contained "___"   conceal
-
-Highlight markdownBoldEmphasisUnderscore htmlBoldItalic
-Highlight markdownTripleUnderscore Operator
+Highlight markdownBoldEmphasis htmlBoldItalic
 
