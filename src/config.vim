@@ -6,17 +6,53 @@ endif
 if version < 508
   syntax clear
   command! -nargs=+ Highlight highlight link <args>
-  command! -nargs=+ Load source <sfile>:p:h/<args>
-  source <sfile>:p:h/html.vim " Read the HTML syntax
+  " Read the HTML syntax
+  source <sfile>:p:h/html.vim
 else
-  runtime! syntax/html.vim " Read the HTML syntax
   command! -nargs=+ Highlight highlight default link <args>
-  command! -nargs=+ Load runtime! syntax/<args>
-  unlet b:current_syntax
+  " Read the HTML syntax
+  runtime! syntax/html.vim
 endif
+
+unlet b:current_syntax
 
 syntax spell toplevel
 syntax sync minlines=10
 syntax sync linebreaks=1
 "syntax case ignore
+
+syntax match markdownAsterisk         contained "\*"   conceal
+syntax match markdownPlus             contained "+"   "conceal
+syntax match markdownMinus            contained "\-"  "conceal
+syntax match markdownUnderscore       contained "_"    conceal
+syntax match markdownHash             contained "#"   "conceal
+syntax match markdownBacktick         contained "`"    conceal
+syntax match markdownPeriod           contained ":"   "conceal
+syntax match markdownBracketLeft      contained "\["   conceal
+syntax match markdownBracketRight     contained "\]"   conceal
+syntax match markdownParenthesisLeft  contained "("    conceal
+syntax match markdownParenthesisRight contained ")"    conceal
+
+Highlight markdownAsterisk         Operator
+Highlight markdownPlus             Operator
+Highlight markdownMinus            Operator
+Highlight markdownUnderscore       Operator
+Highlight markdownHash             Operator
+Highlight markdownBacktick         Operator
+Highlight markdownPeriod           Operator
+Highlight markdownBracketLeft      Operator
+Highlight markdownBracketRight     Operator
+Highlight markdownParenthesisLeft  Operator
+Highlight markdownParenthesisRight Operator
+
+" Escapes
+syntax match markdownEscapeChars "\\[][\\`*_{}()#+.!-]"
+
+" Blocks
+syntax cluster markdownBlock contains=@markdownHeaders,@markdownList,markdownBlockquote,markdownCodeBlock
+
+" Spans
+syntax cluster markdownSpan       contains=@markdownStyle,markdownLineBreak,markdownLink
+syntax cluster markdownStyle      contains=markdownBold,markdownEmphasis,markdownBoldEmphasis,markdownCode,htmlSpecialChar
+syntax match   markdownStyleRule  /^\s*_\s\{0,1}_\s\{0,1}_$/
 
