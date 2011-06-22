@@ -1,3 +1,6 @@
 This is a [named link][] link this is a not link. Click
-[here](http://example.com 'Example site') to access the [example][] of page.
+[here](http://example.com "Example site") to access the [example][] of page.
+
+[named link]:   http://example.com "Example"
+[example]:      http://example.com/example.html 'Example page'
 

@@ -27,7 +27,9 @@ syntax match markdownMinus            contained "\-"  "conceal
 syntax match markdownUnderscore       contained "_"    conceal
 syntax match markdownHash             contained "#"   "conceal
 syntax match markdownBacktick         contained "`"    conceal
-syntax match markdownPeriod           contained ":"   "conceal
+syntax match markdownQuote            contained "\""   conceal
+syntax match markdownApostrophe       contained "'"    conceal
+syntax match markdownColon            contained ":"   "conceal
 syntax match markdownBracketLeft      contained "\["   conceal
 syntax match markdownBracketRight     contained "\]"   conceal
 syntax match markdownParenthesisLeft  contained "("    conceal
@@ -39,7 +41,9 @@ Highlight markdownMinus            Operator
 Highlight markdownUnderscore       Operator
 Highlight markdownHash             Operator
 Highlight markdownBacktick         Operator
-Highlight markdownPeriod           Operator
+Highlight markdownQuote            Operator
+Highlight markdownApostrophe       Operator
+Highlight markdownColon            Operator
 Highlight markdownBracketLeft      Operator
 Highlight markdownBracketRight     Operator
 Highlight markdownParenthesisLeft  Operator
