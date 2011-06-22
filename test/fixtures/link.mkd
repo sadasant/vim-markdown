@@ -1,0 +1,3 @@
+This is a [named link][] link this is a not link. Click
+[here](http://example.com 'Example site') to access the [example][] of page.
+
