@@ -60,3 +60,5 @@ syntax region markdownListItem matchgroup=markdownListItemRule start=/^\([\*\+\-
 Highlight markdownListItemRule Identifier
 Highlight markdownListItem String
 
+syntax cluster markdownBlocks contains=markdownListItem
+

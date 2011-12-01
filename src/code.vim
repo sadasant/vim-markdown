@@ -7,3 +7,5 @@ syntax region markdownCode start=/<code[^>]*/  end=/<\/code>/  keepend
 
 Highlight markdownCode Identifier
 
+syntax cluster markdownSpans contains=markdownCode,@Spell
+

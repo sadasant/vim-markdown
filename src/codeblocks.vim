@@ -12,3 +12,6 @@ syntax region markdownCodeBlock start=/^```$/ end=/^```$/ keepend contains=markd
 
 Highlight markdownCodeBlockRule Identifier
 Highlight markdownCodeBlock     Identifier
+
+syntax cluster markdownBlocks contains=markdownCodeBlock,@Spell
+

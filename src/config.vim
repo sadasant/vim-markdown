@@ -52,9 +52,6 @@ Highlight markdownParenthesisRight Operator
 " Escapes
 syntax match markdownEscapeChars "\\[][\\`*_{}()#+.!-]"
 
-" Blocks
-syntax cluster markdownBlock contains=@markdownHeaders,@markdownList,markdownBlockquote,markdownCodeBlock
-
 " Spans
 syntax cluster markdownSpan       contains=@markdownStyle,markdownLineBreak,markdownLink
 syntax cluster markdownStyle      contains=markdownBold,markdownEmphasis,markdownBoldEmphasis,markdownCode,htmlSpecialChar

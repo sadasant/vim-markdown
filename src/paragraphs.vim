@@ -2,19 +2,28 @@
 "@ Paragraphs                                               *markdown-paragraphs*
 "@
 "@ A paragraph is simply one or more consecutive lines of text, separated by one
-"@ or more blank lines.  Normal paragraphs should not be indented with spaces or
+"@ or more blank lines. Normal paragraphs should not be indented with spaces or
 "@ tabs. Example: >
 "@
 "@   This is a sample of paragraph that will separated by blank lines before and
 "@   after.
 "@
 "@ >
+"@ 
+"@ ------------------------------------------------------------------------------
+"@ Line breaks                                             *markdown-line-breaks*
+"@
+"@ The line breaks can be included inside a paragraph by two or more spaces
+"@ followed by return. Example: >
+"@    
+"@   This is a sample of paragraph that will separated by blank lines and   
+"@   contains a line break.
 
-" Paragraph and line matches
-syntax match markdownLineContinue /.$/       contained
-syntax match markdownLineBreak    /\s\{2,}$/ conceal cchar=_
-syntax match markdownNewline      /^[<@]\@!/ nextgroup=@markdownBlock
+syntax match markdownLineBreak /\s\{2,}$/ conceal cchar=¬ "cchar=¶
 
-Highlight markdownLineContinue Ignore
-Highlight markdownLineBreak    Comment
+syntax cluster markdownParagraph contains=markdownLineBreak,@markdownSpans
+
+Highlight markdownLineBreak Comment
+
+syntax cluster markdownBlocks contains=@markdownParagraph
 

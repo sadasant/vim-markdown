@@ -15,4 +15,7 @@ usage() {
 
 : ${1:?"source name is required" "$(usage)"}
 
-vim -n test/test.vim +":source %" ${1}
+test -f "test/${1}_test.vim" && testfile="test/${1}_test.vim" || testfile="test/test.vim"
+
+vim -gn ${testfile} +":source %" ${1}
+

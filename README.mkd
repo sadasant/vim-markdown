@@ -4,10 +4,8 @@ Vim-Markdown
 Description
 -----------
 
-[Markdown][] syntax support for [Vim][] Editor.
-
-[Vim-Markdown][script homepage] have a support for snippets. Therefore, it's  
-recommended that you use [SnipMate][] plugin.
+[Markdown][] syntax support for [Vim][] Editor. Vim-Markdown have a support
+for snippets. Therefore, it's recommended that you use [SnipMate][] plugin.
 
 This syntax file plugin has been completely rewritten from the original *code*
 written by Ben Williams.
@@ -15,9 +13,8 @@ written by Ben Williams.
 Install
 -------
 
-Download the [gzipball][script homepage] from Vim [script homepage][] and
-open the package using [Vim][] and use the command `:source %`. Or run the
-following command:
+Download the gzball from Vim [script homepage][] and open the package using
+[Vim][] and use the command `:source %`. Or run the following command:
 
     vim markdown-<version>.vba.gz +":source %"
 
@@ -31,7 +28,7 @@ Information
 
 You maybe contributes to source. So, send a feedback in [issue tracker][].
 
-Vim-Markdown is hosted on [Github (fork project)](http://github.com/hallison/vim-markdown).
+Vim-Markdown is hosted on [Github](http://github.com/hallison/vim-markdown).
 
 Visit the [script homepage][] for more information.
 
@@ -57,7 +54,7 @@ Compatibilities
 ---------------
 
 This syntax try be compliant 100% with the [Markdown][] syntax specification
-and use only [Markdown.pl][markdown] written by the [author][].
+and use only [Markdown][markdown].pl written by the [John Gruber][].
 
 Features
 --------
@@ -75,6 +72,9 @@ Copyright
 ---------
 
 Copyright (c) 2011 Hallison Batista <hallison.batista@gmail.com>
+
+[John Gruber]:                                      http://daringfireball.net/
+  "Daring Fireball by John Gruber"
 
 [markdown]:                       http://daringfireball.net/projects/markdown/
   "Markdown syntax project"
