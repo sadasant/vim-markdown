@@ -5,4 +5,5 @@
 "             highlight.
 
 autocmd BufNewFile,BufRead *.{md,mkd,mkdn,mark*} set filetype=markdown
+autocmd FileType markdown compiler markdown
 

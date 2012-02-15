@@ -9,13 +9,16 @@ VERSION = $(shell git tag | sort | tail -1 | tr -d "[v\n]")
 RELEASE = $(shell git log v$(VERSION) --format="%ai" | head -1 | tr -d "\n")
 
 SYNTAX   = $(MAKEDIR)/syntax/$(PLUGIN).vim
+COMPILER = $(MAKEDIR)/compiler/$(PLUGIN).vim
 FTDETECT = $(MAKEDIR)/ftdetect/$(PLUGIN).vim
 FTPLUGIN = $(MAKEDIR)/ftplugin/$(PLUGIN).vim
-HELP     = $(MAKEDIR)/doc/$(PLUGIN).txt
-README   = $(MAKEDIR)/README.mkd
 SNIPPETS = $(MAKEDIR)/snippets/$(PLUGIN).snippets
+SOURCES  = $(SYNTAX) $(COMPILER) $(FTDETECT) $(FTPLUGIN) $(SNIPPETS)
+
 VIMBALL  = $(PLUGIN)-$(VERSION).vba
-SOURCES  = $(SYNTAX) $(FTDETECT) $(FTPLUGIN) $(SNIPPETS)
+
+HELP     		= $(MAKEDIR)/doc/$(PLUGIN).txt
+README   		= $(MAKEDIR)/README.mkd
 
 vim = vim -n
 

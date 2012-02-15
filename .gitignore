@@ -5,6 +5,7 @@
 *.vba
 *.zip
 *.html
+manifest
 test.*
 pkg/*
 tmp/*
