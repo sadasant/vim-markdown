@@ -4,8 +4,7 @@
 *.tmp
 *.vba
 *.zip
+*.html
 test.*
-test/*/*.html
-build/*
 pkg/*
 tmp/*

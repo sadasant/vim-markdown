@@ -71,7 +71,7 @@ This syntax highlight add the following features:
 Copyright
 ---------
 
-Copyright (c) 2011 Hallison Batista <hallison.batista@gmail.com>
+Copyright (c) 2012 Hallison Batista <hallison.batista@gmail.com>
 
 [John Gruber]:                                      http://daringfireball.net/
   "Daring Fireball by John Gruber"
