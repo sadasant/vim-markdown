@@ -19,6 +19,7 @@ VIMBALL  = $(PLUGIN)-$(VERSION).vba
 
 HELP     		= $(MAKEDIR)/doc/$(PLUGIN).txt
 README   		= $(MAKEDIR)/README.mkd
+PLUGIN_INFO = $(MAKEDIR)/plugin-info.txt
 
 vim = vim -n
 
@@ -28,7 +29,7 @@ all: build doc
 
 build: $(VIMBALL)
 
-doc: $(README) $(HELP)
+doc: $(HELP) $(README) $(PLUGIN_INFO)
 
 install: all
 	$(vim) $(VIMBALL) -c "source % | quit!"
@@ -62,6 +63,10 @@ $(HELP): %$(PLUGIN).txt:
 
 $(README):
 	cp README.mkd $(MAKEDIR)
+
+$(PLUGIN_INFO):
+	cp plugin-info.txt $(@)
+	$(vim) --noplugin $(@) -c "source build.vim | exit!"
 
 mkmanifest = for src in $(subst $(MAKEDIR)/,,$(^)); do echo $${src} >> manifest; done
 mkvimball  = vim -n manifest -c "%MkVimball! $(VIMBALL) ." -c "exit!"

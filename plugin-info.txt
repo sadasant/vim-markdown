@@ -1,8 +1,8 @@
 {
-  "name" : "Markdown",
-  "version" : "dev",
-  "author" : "Hallison Batista <hallison.batista@gmail.com>",
-  "repository" : {"type": "git", "url": "git://github.com/hallison/vim-markdown.git"},
+  "name" : "b:plugin.name",
+  "version" : "b:plugin.version",
+  "author" : "b:plugin.author",
+  "repository" : {"type": "git", "url": "b:plugin.scm"},
   "dependencies" : {
     "snipMate": {}
   },
