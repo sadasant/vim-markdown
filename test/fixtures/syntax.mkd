@@ -1,0 +1,58 @@
+Title level one with block
+==========================
+
+This is a sample of paragraph using styles as **bold with asterisks** and __bold
+with underscores__.
+
+# Title level one inline
+
+This is a sample of paragraph using style as *emphasis with asterisks* and
+_emphasis with underscores_.
+
+Title level two with block
+--------------------------
+
+This is a other paragraph using complex styles as **_bold emphasis with double
+asterisks and underscore_** and *__bold emphasis with asterisk and double
+underscores__*
+
+## Title level two inline ##
+
+This is a other paragraph using complex style as __*bold emphasis with double
+underscores and asterisk*__ and _**bold emphasis with underscore and double
+asterisks**_
+
+### Title level three ###
+
+- List item 1
+
+  This should be a internal paragraph.
+
+- List item 2
+
+  - List item 2.1
+
+  - List item 2.2
+
+#### Title level four
+
+This paragraph contains `code` and ``other code`` and a block codes.
+
+    #!/bin/sh
+
+    echo "This is a block code"
+
+##### Title level five
+
+This is a example of the use HTML tags in [Markdown][] <b><i>files</i></b>.
+
+<pre>
+  this is a code pre-formatted.
+</pre>
+
+###### Title level six
+
+This paragraph contains links to [script site][site].
+
+  [site]: http://hallison.github.com/vim-markdown "Vim-Markdown home page"
+
