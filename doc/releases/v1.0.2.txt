@@ -1,0 +1,8 @@
+==============================================================================
+Vim-Markdown v1.0.2                                           *markdown-1.0.3*
+
+Small updates.
+
+* Updates in documentation.
+* Renamed build file.
+
