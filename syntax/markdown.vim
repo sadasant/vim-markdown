@@ -1,109 +1,157 @@
 " Vim syntax file
-" Language:     Markdown
-" Author:       Ben Williams <benw@plasticboy.com>
-" Maintainer:   Hallison Batista <email@hallisonbatista.com>
-" URL:          http://plasticboy.com/markdown-vim-mode/
-" Version:      1.0.1
-" Last Change:  Fri Dec  4 08:36:48 AMT 2009
-" Remark:       Uses HTML syntax file
-" Remark:       I don't do anything with angle brackets (<>) because that would too easily
-"               easily conflict with HTML syntax
-" TODO: Handle stuff contained within stuff (e.g. headings within blockquotes)
-
-" Read the HTML syntax to start with
-if version < 600
-  so <sfile>:p:h/html.vim
-else
-  runtime! syntax/html.vim
-  unlet b:current_syntax
-endif
-
-if version < 600
-  syntax clear
-elseif exists("b:current_syntax")
+" Language: Markdown
+" Author:   Hallison Batista <hallison.batista@gmail.com>
+" URL:      http://github.com/hallison/vim-markdown/
+" Version:  v1.2.2
+" Release:  2011-03-02 20:06:53 -0400
+" Remark:
+"   This syntax plugin was fully rewritten from source written by Ben Williams <benw@plasticboy.com>
+" Remark:
+"   Uses HTML syntax file
+if exists("b:current_syntax")
   finish
 endif
-
-" Don't use standard HiLink, it will not work with included syntax files
+" Commands for compatibilities and helpers
 if version < 508
-  command! -nargs=+ HtmlHiLink hi link <args>
+  syntax clear
+  command! -nargs=+ Highlight highlight link <args>
+  " Read the HTML syntax
+  source <sfile>:p:h/html.vim
 else
-  command! -nargs=+ HtmlHiLink hi def link <args>
+  command! -nargs=+ Highlight highlight default link <args>
+  " Read the HTML syntax
+  runtime! syntax/html.vim
 endif
-
+unlet b:current_syntax
 syntax spell toplevel
-syntax case ignore
+syntax sync minlines=10
 syntax sync linebreaks=1
-
-" Additions to HTML groups
-syntax region htmlBold    start=/\\\@<!\(^\|\A\)\@=\*\@<!\*\*\*\@!\S\@=/  end=/\S\\\@<!\*\@<!\*\*\*\@!\($\|\A\)\@=/  contains=htmlItalic,@Spell
-
-syntax region htmlItalic  start=/\\\@<!\(^\|\A\)\@=\*\@<!\*\*\@!\S\@=/   end=/\S\\\@<!\*\@<!\*\*\@!\($\|\A\)\@=/    contains=htmlBold,@Spell
-syntax region htmlItalic  start=/\\\@<!\(^\|\A\)\@=\<_\@<!___\@!\S\@=/   end=/\S\\\@<!_\@<!___\@!\($\|\A\)\@=/       contains=htmlBold,@Spell
-syntax region htmlItalic  start=/\\\@<!\(^\|\A\)\@=\<_\@<!__\@!\S\@=/    end=/\S\\\@<!_\@<!__\@!\($\|\A\)\@=/       contains=htmlBold,@Spell
-
-" [link](URL) | [link][id] | [link][]
-syntax region mkdLink matchgroup=mkdDelimiter start="\!\?\["  end="\]\ze\s*[[(]" contains=@Spell nextgroup=mkdURL,mkdID skipwhite
-syntax region mkdID   matchgroup=mkdDelimiter start="\["      end="\]" contained
-syntax region mkdURL  matchgroup=mkdDelimiter start="("       end=")"  contained
-
-" Link definitions: [id]: URL (Optional Title)
-" TODO handle automatic links without colliding with htmlTag (<URL>)
-syntax region mkdLinkDef matchgroup=mkdDelimiter   start="^ \{,3}\zs\[" end="]:" oneline nextgroup=mkdLinkDefTarget skipwhite
-syntax region mkdLinkDefTarget start="<\?\zs\S" excludenl end="\ze[>[:space:]\n]"   contained nextgroup=mkdLinkTitle,mkdLinkDef skipwhite skipnl oneline
-syntax region mkdLinkTitle matchgroup=mkdDelimiter start=+"+     end=+"+  contained
-syntax region mkdLinkTitle matchgroup=mkdDelimiter start=+'+     end=+'+  contained
-syntax region mkdLinkTitle matchgroup=mkdDelimiter start=+(+     end=+)+  contained
-
-" Define Markdown groups
-syntax match  mkdLineContinue ".$" contained
-syntax match  mkdRule      /^\s*\*\s\{0,1}\*\s\{0,1}\*$/
-syntax match  mkdRule      /^\s*-\s\{0,1}-\s\{0,1}-$/
-syntax match  mkdRule      /^\s*_\s\{0,1}_\s\{0,1}_$/
-syntax match  mkdRule      /^\s*-\{3,}$/
-syntax match  mkdRule      /^\s*\*\{3,5}$/
-syntax match  mkdListItem  /^\s*[-*+]\s\+.*\n\(\(^.\+\n\)*\n\?\)\(\(^\(\s\{4}\|\t\)\+.*\n\)\(^.\+\n\)*\n\?\)*/ contains=mkdListCode,mkdCode,htmlBold,htmlItalic,htmlSpecialChar,@Spell
-syntax match  mkdListItem  /^\s*\d\+\.\s\+.*\n\(\(^.\+\n\)*\n\?\)\(\(^\(\s\{4}\|\t\)\+.*\n\)\(^.\+\n\)*\n\?\)*/ contains=mkdListCode,mkdCode,htmlBold,htmlItalic,htmlSpecialChar,@Spell
-"
-syntax match  mkdBlockCode  /^\s*\n\(^\(\s\{4}\|\t\).*\n\)\+/
-syntax match  mkdListCode   /^\s*\n\(^\(\s\{8}\|\t{2}\).*\n\)\+/
-syntax match  mkdLineBreak  /  \+$/
-syntax region mkdCode       start=/\\\@<!`[^`]\@=/     end=/\\\@<![^`]`/
-syntax region mkdCode       start=/\s*``[^`]*/  end=/[^`]*``\s*/
-syntax region mkdBlockquote start=/^\s*>/       end=/$/           contains=mkdLineBreak,mkdLineContinue,@Spell
-syntax region mkdCode       start="<pre[^>]*>"  end="</pre>"
-syntax region mkdCode       start="<code[^>]*>" end="</code>"
-
-" HTML headings
-syntax region htmlH1       start="^\s*#"                   end="\($\|#\+\)" contains=@Spell
-syntax region htmlH2       start="^\s*##"                  end="\($\|#\+\)" contains=@Spell
-syntax region htmlH3       start="^\s*###"                 end="\($\|#\+\)" contains=@Spell
-syntax region htmlH4       start="^\s*####"                end="\($\|#\+\)" contains=@Spell
-syntax region htmlH5       start="^\s*#####"               end="\($\|#\+\)" contains=@Spell
-syntax region htmlH6       start="^\s*######"              end="\($\|#\+\)" contains=@Spell
-syntax match  htmlH1       /^.\+\n=\+$/ contains=@Spell
-syntax match  htmlH2       /^.\+\n-\+$/ contains=@Spell
-
-"highlighting for Markdown groups
-HtmlHiLink mkdString        String
-HtmlHiLink mkdCode          String
-HtmlHiLink mkdListCode      String
-HtmlHiLink mkdBlockCode     String
-HtmlHiLink mkdBlockquote    Comment
-HtmlHiLink mkdLineContinue  Comment
-HtmlHiLink mkdListItem      Identifier
-HtmlHiLink mkdRule          Identifier
-HtmlHiLink mkdLineBreak     Todo
-HtmlHiLink mkdLink          htmlLink
-HtmlHiLink mkdURL           htmlString
-HtmlHiLink mkdID            Identifier
-HtmlHiLink mkdLinkDef       mkdID
-HtmlHiLink mkdLinkDefTarget mkdURL
-HtmlHiLink mkdLinkTitle     htmlString
-
-HtmlHiLink mkdDelimiter     Delimiter
-
+"syntax case ignore
+syntax match markdownAsterisk         contained "\*"   conceal
+syntax match markdownPlus             contained "+"   "conceal
+syntax match markdownMinus            contained "\-"  "conceal
+syntax match markdownUnderscore       contained "_"    conceal
+syntax match markdownHash             contained "#"   "conceal
+syntax match markdownBacktick         contained "`"    conceal
+syntax match markdownQuote            contained "\""   conceal
+syntax match markdownApostrophe       contained "'"    conceal
+syntax match markdownColon            contained ":"   "conceal
+syntax match markdownBracketLeft      contained "\["   conceal
+syntax match markdownBracketRight     contained "\]"   conceal
+syntax match markdownParenthesisLeft  contained "("    conceal
+syntax match markdownParenthesisRight contained ")"    conceal
+Highlight markdownAsterisk         Operator
+Highlight markdownPlus             Operator
+Highlight markdownMinus            Operator
+Highlight markdownUnderscore       Operator
+Highlight markdownHash             Operator
+Highlight markdownBacktick         Operator
+Highlight markdownQuote            Operator
+Highlight markdownApostrophe       Operator
+Highlight markdownColon            Operator
+Highlight markdownBracketLeft      Operator
+Highlight markdownBracketRight     Operator
+Highlight markdownParenthesisLeft  Operator
+Highlight markdownParenthesisRight Operator
+" Escapes
+syntax match markdownEscapeChars "\\[][\\`*_{}()#+.!-]"
+" Spans
+syntax cluster markdownSpan       contains=@markdownStyle,markdownLineBreak,markdownLink
+syntax cluster markdownStyle      contains=markdownBold,markdownEmphasis,markdownBoldEmphasis,markdownCode,htmlSpecialChar
+syntax match   markdownStyleRule  /^\s*_\s\{0,1}_\s\{0,1}_$/
+syntax match markdownLineBreak /\s\{2,}$/ conceal cchar=¬ "cchar=¶
+syntax cluster markdownParagraph contains=markdownLineBreak,@markdownSpans
+Highlight markdownLineBreak Comment
+syntax cluster markdownBlocks contains=@markdownParagraph
+syntax match markdownHeaderUnderline contained /^[=-]\+$/
+syntax match markdownHeaderLine      contained /^[#]{1,6}/
+syntax match markdownHeader1 /^.\+\n=\+$/ contains=markdownHeaderUnderline,@markdownStyle,@Spell
+syntax match markdownHeader2 /^.\+\n-\+$/ contains=markdownHeaderUnderline,@markdownStyle,@Spell
+syntax region markdownHeader1 start="^\s*#"      end="\($\|#\+\)" contains=markdownHash,@markdownSpanElements,@Spell
+syntax region markdownHeader2 start="^\s*##"     end="\($\|#\+\)" contains=markdownHash,@markdownSpanElements,@Spell
+syntax region markdownHeader3 start="^\s*###"    end="\($\|#\+\)" contains=markdownHash,@markdownSpanElements,@Spell
+syntax region markdownHeader4 start="^\s*####"   end="\($\|#\+\)" contains=markdownHash,@markdownSpanElements,@Spell
+syntax region markdownHeader5 start="^\s*#####"  end="\($\|#\+\)" contains=markdownHash,@markdownSpanElements,@Spell
+syntax region markdownHeader6 start="^\s*######" end="\($\|#\+\)" contains=markdownHash,@markdownSpanElements,@Spell
+" Highlight headers
+Highlight markdownHeader1         htmlH1
+Highlight markdownHeader2         htmlH2
+Highlight markdownHeader3         htmlH3
+Highlight markdownHeader4         htmlH4
+Highlight markdownHeader5         htmlH5
+Highlight markdownHeader6         htmlH6
+Highlight markdownHeaderUnderline Operator
+Highlight markdownHeaderLine      Operator
+syntax cluster markdownBlocks contains=markdownHeader1,markdownHeader2,markdownHeader3,markdownHeader4,markdownHeader5,markdownHeader6
+" Blockquotes
+syntax match  markdownBlockquoteRule /^[>]\{1,6}/ contained conceal
+syntax region markdownBlockquote matchgroup=markdownBlockquoteRule start=/^\s*>/ end=/$/ contains=@markdownBlock,@Spell
+Highlight markdownBlockquoteRule Ignore
+Highlight markdownBlockquote     htmlItalic
+" Lists
+" TOFIX: Lists and codeblocks collide
+syntax match markdownListItemRule /^\([\*\+\-]\|\s\{0,3}[\*\+\-]\)\s/
+syntax region markdownListItem matchgroup=markdownListItemRule start=/^\([\*\+\-]\|\s\{1,}[\*\+\-]\)\s/ end=/$/
+"syntax match markdownListMultiLineItemRule /^\(\s\{4,}\|\t{1,}\)[\*\+\-]\s/
+"/^[\*\-\+].*$\n/
+"/^\s*\zs[\*\+\-].*$/
+" List items
+"syntax match markdownListItem /^\s*[-*+]\s\+.*\n\(\(^.\+\n\)*\n\?\)\(\(^\(\s\{4}\|\t\)\+.*\n\)\(^.\+\n\)*\n\?\)*/  contains=@markdownSpan
+"syntax match markdownListItem /^\s*\d\+\.\s\+.*\n\(\(^.\+\n\)*\n\?\)\(\(^\(\s\{4}\|\t\)\+.*\n\)\(^.\+\n\)*\n\?\)*/ contains=@markdownSpan
+"syntax region markdownListItem matchgroup=markdownListOneItemRule start="^[\*\-\+].*$\n" end="$\n"
+"syntax cluster markdownList contains=markdownListOneItemRule,markdownListItem
+"Highlight markdownListMultiLineItemRule Special
+Highlight markdownListItemRule Identifier
+Highlight markdownListItem String
+syntax cluster markdownBlocks contains=markdownListItem
+syntax match markdownCodeBlockRule /^\(\s\{4}\|\t{1}\)[^\*\-\+]/ conceal
+" Code Block
+syntax region markdownCodeBlock matchgroup=markdownCodeBlockRule start=/^\(\s\{4}\|\t{1}\)[^\*\-\+]/ end="$"
+syntax region markdownCodeBlock start=/^```$/ end=/^```$/ keepend contains=markdownBacktick
+Highlight markdownCodeBlockRule Identifier
+Highlight markdownCodeBlock     Identifier
+syntax cluster markdownBlocks contains=markdownCodeBlock,@Spell
+"MKD_HRULES
+syntax region markdownLink      start="\[\S\@="    end="\S\@<=\]\s\{,1}[\[(]"me=e-1 skipwhite keepend oneline nextgroup=markdownLinkUrl,markdownLinkId contains=markdownBracketLeft,markdownBracketRight,@Spell
+syntax region markdownLinkId    start="\["         end="\]"  contained keepend oneline conceal contains=markdownBracketLeft,markdownBracketRight
+syntax region markdownLinkId    start="^\s\{,3}\[" end="\]:" keepend oneline skipwhite nextgroup=markdownUrl,markdownLinkTitle contains=markdownBracketLeft,markdownBracketRight,markdownColon
+syntax region markdownLinkUrl   start="("          end=")"   contained keepend oneline contains=markdownLinkExternalUrl,markdownParenthesisRight,markdownLinkTitle
+syntax region markdownLinkTitle start=+"+          end=+"+   contained keepend contains=markdownQuote,@Spell
+syntax region markdownLinkTitle start=+'+          end=+'+   contained keepend contains=markdownApostrophe,@Spell
+syntax region markdownLinkTitle start=+(+          end=+)+   contained keepend contains=markdownParenthesisLeft,markdownParenthesisRight,@Spell
+syntax match markdownLinkExternalUrl contained "("    nextgroup=markdownUrl conceal cchar=> "cchar=»
+syntax match markdownUrl             contained "\S\+" nextgroup=markdownLinkTitle skipwhite skipnl
+Highlight markdownLink            htmlLink
+Highlight markdownLinkId          Identifier
+Highlight markdownLinkUrl         Operator
+Highlight markdownLinkTitle       Comment
+Highlight markdownUrl             String
+Highlight markdownLinkExternalUrl Operator
+syntax cluster markdownSpans contains=markdownLink
+syntax region markdownEmphasis start=/_\S\@=/  end=/\S\@<=_/  keepend contains=markdownUnderscore,@Spell
+syntax region markdownEmphasis start=/\*\S\@=/ end=/\S\@<=\*/ keepend contains=markdownAsterisk,@Spell
+Highlight markdownEmphasis htmlItalic
+syntax cluster markdownSpans contains=markdownEmphasis
+syntax region markdownBold start=/\*\*\S\@=/ end=/\S\@<=\*\*/ keepend contains=markdownAsterisk,markdownAsterisk,@Spell
+syntax region markdownBold start=/__\S\@=/   end=/\S\@<=__/   keepend contains=markdownUnderscore,markdownUnderscore,@Spell
+Highlight markdownBold htmlBold
+syntax cluster markdownSpans contains=markdownBold
+syntax region markdownBoldEmphasis start=/\*__\S\@=/   end=/\S\@<=__\*/   keepend contains=markdownAsterisk,markdownUnderscore,markdownUnderscore,@Spell
+syntax region markdownBoldEmphasis start=/\*\*_\S\@=/  end=/\S\@<=_\*\*/  keepend contains=markdownAsterisk,markdownAsterisk,markdownUnderscore,@Spell
+syntax region markdownBoldEmphasis start=/\*\*\*\S\@=/ end=/\S\@<=\*\*\*/ keepend contains=markdownAsterisk,markdownAsterisk,markdownAsterisk,@Spell
+syntax region markdownBoldEmphasis start=/_\*\*\S\@=/  end=/\S\@<=\*\*_/  keepend contains=markdownUnderscore,markdownAsterisk,markdownAsterisk,@Spell
+syntax region markdownBoldEmphasis start=/__\*\S\@=/   end=/\S\@<=\*__/   keepend contains=markdownUnderscore,markdownUnderscore,markdownAsterisk,@Spell
+syntax region markdownBoldEmphasis start=/___\S\@=/    end=/\S\@<=___/    keepend contains=markdownUnderscore,markdownUnderscore,markdownUnderscore,@Spell
+Highlight markdownBoldEmphasis htmlBoldItalic
+syntax cluster markdownSpans contains=markdownBoldEmphasis
+" Code
+syntax region markdownCode start=/\\\@<!`/    end=/\\\@<!`/    keepend contains=markdownBacktick
+syntax region markdownCode start=/\s*``[^`]*/ end=/[^`]*``\s*/ keepend contains=markdownBacktick
+syntax region markdownCode start=/<pre[^>]*/  end=/<\/pre>/    keepend
+syntax region markdownCode start=/<code[^>]*/  end=/<\/code>/  keepend
+Highlight markdownCode Identifier
+syntax cluster markdownSpans contains=markdownCode,@Spell
+"MKD_IMAGE
 let b:current_syntax = "markdown"
-
-delcommand HtmlHiLink
-" vim: tabstop=2
+delcommand Highlight
+" vim:tabstop=2

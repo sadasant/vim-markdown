@@ -4,63 +4,93 @@ Vim-Markdown
 Description
 -----------
 
-[Markdown][] syntax support for [Vim][] Editor.
+[Markdown][] syntax support for [Vim][] Editor. Vim-Markdown have a support
+for snippets. Therefore, it's recommended that you use [SnipMate][] plugin.
 
-[Vim-Markdown][script homepage] have a support for snippets. Therefore, it's
-recommended that you use [SnipMate][] plugin.
+This syntax file plugin has been completely rewritten from the original *code*
+written by Ben Williams.
 
 Install
 -------
 
-Download the [gzipball][script homepage] from Vim [script homepage][] and
-open the package using [Vim][] and use the command `:source %`. Or run the
-following command:
+Download the gzball from Vim [script homepage][] and open the package using
+[Vim][] and use the command `:source %`. Or run the following command:
 
     vim markdown-<version>.vba.gz +":source %"
 
-Done! All files will be extracted in your [Vim][] home directory.
+Done! All files will be extracted in your [Vim][] home.
 If you checkout from repository, install using the following commands:
 
-    bash do install
-
-Or
-
-    ./do install
-
-This instruction will be create a Vimball file and install.
+    make install
 
 Information
 -----------
 
-The original [Markdown][] [Vim][] syntax was created by [Ben Williams][].
-
 You maybe contributes to source. So, send a feedback in [issue tracker][].
 
-Vim-Markdown is hosted on following servers:
-
-* [Github (original source)](http://github.com/plasticboy/vim-markdown/)
-* [Github (fork project)](http://github.com/hallison/vim-markdown)
-* [Codaset](http://codaset.com/hallison/vim-markdown)
+Vim-Markdown is hosted on [Github](http://github.com/hallison/vim-markdown).
 
 Visit the [script homepage][] for more information.
+
+Development
+-----------
+
+The development this plugin is based in prototyping. The workflow applied is
+following:
+
+1. Write the text with the [Markdown][] syntax.
+2. Write the test based on sourcing files for highlighting the syntax.
+3. Run and see results on the screen.
+4. Commit the code that works.
+
+The tests run with the following command:
+
+    ./runtest <source>
+
+The final result, the syntax and your configurations, are builded, saved and
+released in the master branch.
+
+Compatibilities
+---------------
+
+This syntax try be compliant 100% with the [Markdown][] syntax specification
+and use only [Markdown][markdown].pl written by the [John Gruber][].
+
+Features
+--------
+
+This syntax highlight add the following features:
+
+- Coalesce all the Markdown characters as asterisks, underscores, backticks
+  for improve the reading.
+- All colors used in HTML syntax are used.
+- Highlighting for all HTML tags.
+- Includes useful snippets for a faster typing.
+- Includes documentation of Markdown syntax.
 
 Copyright
 ---------
 
-Copyright (c) 2010 Hallison Batista <email@hallisonbatista.com>
+Copyright (c) 2012 Hallison Batista <hallison.batista@gmail.com>
 
-Copyright (c) 2009 Ben Williams <benw@plasticboy.com>
+[John Gruber]:                                      http://daringfireball.net/
+  "Daring Fireball by John Gruber"
 
-[markdown]: http://daringfireball.net/projects/markdown/
+[markdown]:                       http://daringfireball.net/projects/markdown/
   "Markdown syntax project"
-[script homepage]: http://www.vim.org/scripts/script.php?script_id=2882
+
+[script homepage]:        http://www.vim.org/scripts/script.php?script_id=2882
   "Markdown Vim Script homepage"
-[vim]: http://www.vim.org
+
+[vim]:                                                    http://www.vim.org/
   "Vim Editor"
-[issue tracker]: http://github.com/hallison/vim-markdown/issues
+
+[issue tracker]:                http://github.com/hallison/vim-markdown/issues
   "Vim-Markdown Github Issues"
-[ben williams]: http://plasticboy.com/markdown-vim-mode/
+
+[ben williams]:                       http://plasticboy.com/markdown-vim-mode/
   "Markdown Vim Mode"
-[snipmate]: http://www.vim.org/scripts/script.php?script_id=2540
+
+[snipmate]:               http://www.vim.org/scripts/script.php?script_id=2540
   "SnipMate plugin"
 

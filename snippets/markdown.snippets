@@ -1,43 +1,54 @@
-# [link][]
+snippet ==
+	${1:header 1}
+	$1
+	${2}
+snippet #3
+	### ${1:header 3}
+	${2}
+snippet #4
+	#### ${1:header 4}
+	${2}
+snippet #5
+	##### ${1:header 5}
+	${2}
+snippet #6
+	###### ${1:header 6}
+	${2}
 snippet []
-	[${1:link_id}][]${2}
-# [link][id]
+	[${1:reference}][]${2}
 snippet [[
-	[${1:link}][${2:id}]${3}
-# [link](url)
+	[${1:text}][${2:reference}]${3}
 snippet [(
-	[${1:link}](http://${2:url})${3}
-# [link](email)
+	[${1:text}](http://${2:url})${3}
 snippet [@
-	[${1:link}](mailto:${2:email})${3}
-# [link](url "title")
+	[${1:text}](mailto:${2:email})${3}
 snippet [("
-	[${1:link}](${2:url} "${3:title}")${4}
-# [id]: url "title"
+	[${1:text}](${2:url} "${3:title}")${4}
 snippet [:
-	[${1:id}]: http://${2:url} "${3:title}"
-# [id]: email "title"
+	[${1:reference}]: http://${2:url}
+		"${3:title}"
+		${4}
 snippet [:@
-	[${1:id}]: mailto:${2:url} "${3:title}"
-# ![alt][id]
+	[${1:reference}]: mailto:${2:url}
+		"${3:title}"
+		${4}
 snippet ![
-	![${1:alt}][${2:id}]${3}
-# ![alt](url)
+	![${1:text}][${2:reference}]${3}
 snippet !(
-	![${1:alt}](${2:url})${3}
-# ![alt](url "title")
+	![${1:text}](${2:url})${3}
 snippet !("
-	![${1:alt}](${2:url} "${3:title}")${4}
-# *emphasis* or _emphasis_
+	![${1:text}](${2:url} "${3:title}")${4}
 snippet *
-	*${1}*${2}
+	*${1:emphasis}*${2}
 snippet _
-	_${1}_${2}
-# **strong** or __strong__
+	_${1:emphasis}_${2}
 snippet **
-	**${1}**${2}
+	**${1:strong}**${2}
 snippet __
-	__${1}__${2}
-# `code`
+	__${1:strong}__${2}
+snippet *_
+	**_${1:strong emphasized}_**${2}
+snippet _*
+	__*${1:strong emphasized}*__${2}
 snippet `
-	\`${1}\`${2}
+	`${1:code}`${2}

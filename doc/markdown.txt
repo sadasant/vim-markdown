@@ -1,0 +1,226 @@
+*markdown* - Syntax highlight for Vim editor
+
+Keywords: *markdown* *mkd*
+
+==============================================================================
+Contents                                                   *markdown-contents*
+
+  1. Information about this plugin......................|markdown|
+  2. Markdown Syntax....................................|markdown-syntax|
+     2.1. Paragraphs....................................|markdown-paragraphs|
+     2.2. Line breaks...................................|markdown-line-breaks|
+     2.3. Headers.......................................|markdown-headers|
+     2.4. Blockquotes...................................|markdown-blockquotes|
+     2.5. Lists.........................................|markdown-lists|
+     2.6. Codeblocks....................................|markdown-codeblocks|
+     2.7. Horizontal rules..............................|markdown-hrules|
+     2.8. Links.........................................|markdown-links|
+     2.9. Emphasis......................................|markdown-emphasis|
+     2.10. Code.........................................|markdown-code|
+     2.11. Images.......................................|markdown-images|
+  3. Snippets...........................................|markdown-snippets|
+
+==============================================================================
+Information about this plugin                                       *markdown*
+
+Author          : Hallison Batista <hallison.batista@gmail.com>
+Vim Script Page : http://www.vim.org/scripts/script.php?script_id=2882
+Repository      : http://github.com/hallison/vim-markdown
+
+==============================================================================
+Formatting Syntax                                            *markdown-syntax*
+
+The full syntax reference can be read in the official site of the author John
+Grubber http://daringfireball.net/projects/markdown/.
+
+This *plugin* is a *syntax* *highlight* and was developed and tested using
+the official parser implemented by John Grubber in Perl. Other parsers was
+used:
+
+* maruku    - Ruby implementation library.
+* rdiscount - Ruby implementation library.
+
+------------------------------------------------------------------------------
+Paragraphs                                               *markdown-paragraphs*
+
+A paragraph is simply one or more consecutive lines of text, separated by one
+or more blank lines. Normal paragraphs should not be indented with spaces or
+tabs. Example: >
+
+  This is a sample of paragraph that will separated by blank lines before and
+  after.
+
+>
+
+------------------------------------------------------------------------------
+Line breaks                                             *markdown-line-breaks*
+
+The line breaks can be included inside a paragraph by two or more spaces
+followed by return. Example: >
+   
+  This is a sample of paragraph that will separated by blank lines and   
+  contains a line break.
+------------------------------------------------------------------------------
+Headers                                                      *markdown-headers*
+
+For headers, *Markdown* offers two styles to write: setext and atx. Example: >
+
+  1st level header
+  ================
+
+  2nd level header
+  ----------------
+
+  Body text and several paragraphs separated by blank lines.
+
+  ### 3rd level header
+
+  Body text and several paragraphs separated by blank lines.
+
+  #### 4th level header
+
+  ##### 5th level header
+
+  ###### 6th level header
+>
+
+To create an atx-style header, you put 1-6 hash marks (#) at the beginning of
+the line — the number of hashes equals the resulting HTML header level.
+
+------------------------------------------------------------------------------
+Lists                                                         *markdown-lists*
+
+Unordered (bulleted) lists use asterisks and hyphens (* and -) and ordered
+lists use plus (+). >
+
+  Unordered list:
+
+  * item two
+  * item one
+  * item three
+
+  Or
+
+  - item two
+  - item one
+  - item three
+
+  Ordered list:
+
+  + item one
+  + item two
+  + item three
+
+  Or uses nested list:
+
+  + Item one
+
+    It's possible includes paragraphs.
+
+    - content 1.1
+    - content 1.2
+
+  + Item two
+
+    - content 2.1
+    - content 2.2
+>
+
+------------------------------------------------------------------------------
+Blockquotes                                             *markdown-blockquotes*
+
+A blockquote text must start with > a
+
+------------------------------------------------------------------------------
+Links                                                         *markdown-links*
+
+------------------------------------------------------------------------------
+Phase emphasis                                             *markdown-emphasis*
+
+*Markdown* uses asterisks and underscores to indicate spans of emphasis. >
+
+  This text has *several* _emphasis_. But if you want use strong emphasis,
+  just write using double **asterisks** or __underscores__.
+>
+
+==============================================================================
+Snippets                                                   *markdown-snippets*
+
+------------------------------------------------------------------------------
+Headers                                            *markdown-snippets-headers*
+
+* Heading levels 3 to 6:
+  Snippet: #3<TAB>
+           #4<TAB>
+           #5<TAB>
+           #6<TAB>
+  Result : ### header 3
+           #### header 4
+           ##### header 5
+           ###### header 6
+
+------------------------------------------------------------------------------
+Links and images                                     *markdown-snippets-links*
+
+* Link using only reference:
+  Snippet: []<TAB>
+  Result : [reference][]
+
+* Link using text point to reference:
+  Snippet: [[<TAB>
+  Result : [text][reference]
+
+* Link text point to URL:
+  Snippet: [(<TAB>
+  Result : [[text](http://url)
+
+* Link to email address:
+  Snippet: [@<TAB>
+  Result : [text](mailto:email)
+
+* Link using text and title:
+  Snippet: [("<TAB>
+  Result : [text link](url "title")
+
+* Create link reference:
+  Snippet: [:<TAB>
+  Result : [reference]: http://url
+             "title"
+
+* Create link to email reference:
+  Snippet: [:@<TAB>
+  Result : [reference]: email
+             "title"
+
+* Create link to image:
+  Snippet: ![<TAB>
+  Result : ![text][reference]
+
+* Create link to image using url source:
+  Snippet: !(<TAB>
+  Result : ![text](url)
+
+* Create link to image using url, source and title:
+  Snippet: !("<TAB>
+  Result : ![text](url "title")
+
+------------------------------------------------------------------------------
+Styles                                               *markdown-snippets-styles*
+
+* Emphasis:
+  Snippet: *<TAB> or _<TAB>
+  Result : "*emphasis*" or _emphasis_
+  Notes  : Ignore double quotes.
+
+* Strong:
+  Snippet: **<TAB> or __<TAB>
+  Result : **text** or __text__
+
+* Strong emphasized:
+  Snippet: *_<TAB> or _*<TAB>
+  Result : **_text_** or __*text*__
+
+* Code:
+  Snippet: `<TAB>
+  Result : `code`
+vim:tw=78:ts=8:ft=help:norl:
