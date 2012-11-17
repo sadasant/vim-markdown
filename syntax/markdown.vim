@@ -33,10 +33,9 @@ syntax case ignore
 syntax sync linebreaks=1
 
 " Additions to HTML groups
-syntax region htmlBold    start=/\\\@<!\(^\|\A\)\@=\*\@<!\*\*\*\@!\S\@=/  end=/\S\\\@<!\*\@<!\*\*\*\@!\($\|\A\)\@=/  contains=htmlItalic,@Spell
-
+syntax region htmlBold    start=/\\\@<!\(^\|\A\)\@=\*\@<!\*\*\*\@!\S\@=/ end=/\S\\\@<!\*\@<!\*\*\*\@!\($\|\A\)\@=/  contains=htmlItalic,@Spell
 syntax region htmlItalic  start=/\\\@<!\(^\|\A\)\@=\*\@<!\*\*\@!\S\@=/   end=/\S\\\@<!\*\@<!\*\*\@!\($\|\A\)\@=/    contains=htmlBold,@Spell
-syntax region htmlItalic  start=/\\\@<!\(^\|\A\)\@=\<_\@<!___\@!\S\@=/   end=/\S\\\@<!_\@<!___\@!\($\|\A\)\@=/       contains=htmlBold,@Spell
+syntax region htmlBold    start=/\\\@<!\(^\|\A\)\@=\<_\@<!___\@!\S\@=/   end=/\S\\\@<!_\@<!___\@!\($\|\A\)\@=/      contains=htmlItalic,@Spell
 syntax region htmlItalic  start=/\\\@<!\(^\|\A\)\@=\<_\@<!__\@!\S\@=/    end=/\S\\\@<!_\@<!__\@!\($\|\A\)\@=/       contains=htmlBold,@Spell
 
 " [link](URL) | [link][id] | [link][]
